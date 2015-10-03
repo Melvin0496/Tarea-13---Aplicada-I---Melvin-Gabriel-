@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -12,9 +12,11 @@ namespace EjerciciosCapitulo9Y10
 {
     public partial class EstructuraMascotaYDueño : Form
     {
+        ArrayList arreglo;
         public EstructuraMascotaYDueño()
         {
             InitializeComponent();
+            arreglo = new ArrayList();
         }
 
         public struct Dueño
@@ -63,6 +65,7 @@ namespace EjerciciosCapitulo9Y10
             int edad = Convert.ToInt32(EdadtextBox.Text);
 
             du = new Dueño(NombretextBox.Text, ApellidotextBox.Text, edad, DirecciontextBox.Text, TelefonotextBox.Text, NombreMascotatextBox.Text, ClasetextBox.Text, RazatextBox.Text);
+            arreglo.Add(du.ToString());
             MessageBox.Show("Informacion guardada","Mensaje",MessageBoxButtons.OK,MessageBoxIcon.Information);
             NombretextBox.Clear();
             ApellidotextBox.Clear();
@@ -79,7 +82,11 @@ namespace EjerciciosCapitulo9Y10
 
         private void Informacionbutton_Click_1(object sender, EventArgs e)
         {
-            InformacionrichTextBox.Text = du.ToString();
+            foreach (string var in arreglo)
+            {
+                InformacionrichTextBox.Text += var;
+            }
+            
         }
     }
 }
