@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -12,9 +12,11 @@ namespace EjerciciosCapitulo9Y10
 {
     public partial class EstructuraProductosTienda : Form
     {
+        ArrayList arreglo;
         public EstructuraProductosTienda()
         {
             InitializeComponent();
+            arreglo = new ArrayList();
         }
        public struct Productos
         {
@@ -41,6 +43,7 @@ namespace EjerciciosCapitulo9Y10
         {
             double precio = Convert.ToDouble(PreciotextBox.Text);
             pro = new Productos(NombreProductotextBox.Text,TipotextBox.Text,precio);
+            arreglo.Add(pro.ToString());
             NombreProductotextBox.Clear();
             TipotextBox.Clear();
             PreciotextBox.Clear();
@@ -50,7 +53,11 @@ namespace EjerciciosCapitulo9Y10
 
         private void Listarbutton_Click(object sender, EventArgs e)
         {
-            ProductosrichTextBox.Text += pro.ToString();
+            foreach (string joder in arreglo)
+            {
+                ProductosrichTextBox.Text += joder;
+            }
+            
          
             if(pro.ToString().Length == 0)
             {

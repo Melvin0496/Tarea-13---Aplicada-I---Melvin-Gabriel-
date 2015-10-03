@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -12,9 +12,11 @@ namespace EjerciciosCapitulo9Y10
 {
     public partial class EstructuraCuenta : Form
     {
+        ArrayList arreglo;
         public EstructuraCuenta()
         {
             InitializeComponent();
+            arreglo = new ArrayList();
         }
 
         public struct Cuenta
@@ -43,10 +45,12 @@ namespace EjerciciosCapitulo9Y10
             if(AhorroradioButton.Checked)
             {
                 cu = new Cuenta(NombreEntidadFinacieratextBox.Text,"Ahorro",NumeroCuentatextBox.Text);
+                arreglo.Add(cu.ToString());
             }
             if(CorrienteradioButton.Checked)
             {
                 cu = new Cuenta(NombreEntidadFinacieratextBox.Text,"Corriente",NumeroCuentatextBox.Text);
+                arreglo.Add(cu.ToString());
             }
             MessageBox.Show("Se guardo la cuenta","Mensaje",MessageBoxButtons.OK,MessageBoxIcon.Information);
             NombreEntidadFinacieratextBox.Clear();
@@ -56,7 +60,14 @@ namespace EjerciciosCapitulo9Y10
 
         private void Cuentabutton_Click(object sender, EventArgs e)
         {
-            DatosrichTextBox.Text = cu.ToString();
+
+            
+            
+
+            foreach (string var in arreglo)
+            {
+                DatosrichTextBox.Text += var;
+            }
         }
     }
 }
